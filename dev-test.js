@@ -1,6 +1,5 @@
 const Block = require('./Block')
 
-const block = new Block('foo', 'bar', 'hoge', 'zoo');
+const fooBlock = Block.mineBlock(Block.genesis(), 'test')
 
-console.log(block.toString());
-console.log(Block.genesis().toString());
+console.log(fooBlock.toString())
