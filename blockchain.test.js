@@ -5,6 +5,7 @@ describe('Blockchain', () => {
     let bc;
     beforeEach(() => {
         bc = new Blockchain()
+        bc2 = new Blockchain()
     })
 
     it('starts with the genesis block', () => {
@@ -15,5 +16,16 @@ describe('Blockchain', () => {
         const data = 'foo';
         bc.addBlock(data)
         expect(bc.chain[bc.chain.length - 1].data).toEqual(data)
+    })
+
+    it('validates a valid chain', () => {
+        bc2.addBlock('foo');
+        expect(bc.isValidChain(bc2.chain)).toBe(true);
+    })
+
+    it('invalidates a corrupt chain', () => {
+        bc2.addBlock('foo');
+        bc2.chain[1].data = 'Not foo';
+        expect(bc.isValidChain(bc2.chain)).toBe(false);
     })
 })
