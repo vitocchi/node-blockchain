@@ -39,6 +39,24 @@ class Transaction {
     static verifyTransaction(transaction) {
         return ChainUtil.verifySignature(transaction.input.address, transaction.input.signature, ChainUtil.hash(transaction.outputs))
     }
+
+    update(senderWallet, recipient, amount) {
+        const senderOutput = this.outputs.find(output => output.address === senderWallet.publicKey)
+
+        if (amount > senderOutput.amount) {
+            console.log(`Amount: ${amount} exceeds balance.`)
+            return
+        }
+
+        senderOutput.amount = senderOutput.amount - amount
+        this.outputs.push({
+            amount,
+            address: recipient
+        })
+        Transaction.signTransaction(this, senderWallet)
+
+        return this
+    }
 }
 
 module.exports = Transaction
