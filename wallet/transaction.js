@@ -14,10 +14,10 @@ class Transaction {
         }
 
         const transaction = new this()
-        transaction.outputs, push(...[{
-            amount: senderWalletbalance - amount,
+        transaction.outputs.push(...[{
+            amount: senderWallet.balance - amount,
             address: senderWallet.publicKey
-        } {
+        }, {
             amount,
             address: recipient
         }])

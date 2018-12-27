@@ -3,8 +3,8 @@ const {
 } = require('../config')
 const ChainUtil = require('../chain-util')
 
-calss Wallet {
-    constructor {
+class Wallet {
+    constructor() {
         this.balance = INITIAL_BALANCE
         this.keyPair = ChainUtil.genKeyPair()
         this.publicKey = this.keyPair.getPublic().encode('hex')
