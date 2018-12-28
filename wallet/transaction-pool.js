@@ -21,7 +21,7 @@ class TransactionPool {
 
     validTransactions() {
         return this.transactions.filter(transaction => {
-            const outputTotal = tranasction.outputs.reduce((total, output) => {
+            const outputTotal = transaction.outputs.reduce((total, output) => {
                 return total + output.amount
             }, 0)
 
@@ -30,7 +30,7 @@ class TransactionPool {
                 return
             }
 
-            if (!Transaction.verifyTransaction(trsansacion)) {
+            if (!Transaction.verifyTransaction(transaction)) {
                 console.log(`Invalid signature from ${transaction.input.address}.`)
                 return
             }
