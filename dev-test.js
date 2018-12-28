@@ -1,4 +1,4 @@
-const Block = require('./Block')
+const Block = require('./blockchain/Block')
 
 const fooBlock = Block.mineBlock(Block.genesis(), 'test')
 
